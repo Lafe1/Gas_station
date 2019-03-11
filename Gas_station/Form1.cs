@@ -16,7 +16,8 @@ namespace Gas_station
         bool flooded95 = false;
         bool paid92 = false;
         bool paid95 = false;
-        int sum = 0;
+        float sum = 0;
+        bool gasoline_selection = false;
 
         public Form1()
         {
@@ -51,37 +52,78 @@ namespace Gas_station
 
         }
 
-        private void sum1000_Click(object sender, EventArgs e)
+        private async void sum1000_Click(object sender, EventArgs e)
         {
+
+            label3.SendToBack();
+            label3.Visible = false;
             sum += 1000;
+            pictureBox8.Visible = true;
+            await Task.Delay(500);
+            pictureBox8.Location = new Point(149, 268);
+            await Task.Delay(500);
+            pictureBox8.Visible = false;
+            await Task.Delay(1000);
             label1.Text = "Нажмите 'готово', \n чтобы прекратить\n внесение. \nВы внесли: " + sum + "р";
             label3.BringToFront();
             label3.Visible = true;
+            label5.Visible = false;
+            label6.Visible = false;
 
         }
 
-        private void sum500_Click(object sender, EventArgs e)
+        private async void sum500_Click(object sender, EventArgs e)
         {
+            label3.SendToBack();
+            label3.Visible = false;
             sum += 500;
+            pictureBox8.Visible = true;
+            await Task.Delay(500);
+            pictureBox8.Location = new Point(149, 268);
+            await Task.Delay(500);
+            pictureBox8.Visible = false;
+            await Task.Delay(1000);
             label1.Text = "Нажмите 'готово', \n чтобы закончить\n внесение. \nВы внесли: " + sum + "р";
             label3.BringToFront();
             label3.Visible = true;
+            label5.Visible = false;
+            label6.Visible = false;
+
         }
 
-        private void sum100_Click(object sender, EventArgs e)
+        private async void sum100_Click(object sender, EventArgs e)
         {
+            label3.SendToBack();
+            label3.Visible = false;
             sum += 100;
+            pictureBox8.Visible = true;
+            await Task.Delay(500);
+            pictureBox8.Location = new Point(149, 268);
+            await Task.Delay(500);
+            pictureBox8.Visible = false;
+            await Task.Delay(1000);
             label1.Text = "Нажмите 'готово', \n чтобы закончить\n внесение. \nВы внесли: " + sum + "р";
             label3.BringToFront();
             label3.Visible = true;
+            label5.Visible = false;
+            label6.Visible = false;
         }
 
-        private void sum50_Click(object sender, EventArgs e)
+        private async void sum50_Click(object sender, EventArgs e)
         {
-            sum += 50;
+            label3.SendToBack();
+            label3.Visible = false;
+            sum += 50;           
+            pictureBox8.Visible = true;
+            await Task.Delay(500);
+            pictureBox8.Location = new Point(149, 268);
+            await Task.Delay(500);
+            pictureBox8.Visible = false;
             label1.Text = "Нажмите 'готово', \n чтобы закончить\n внесение. \nВы внесли: " + sum + "р";
             label3.BringToFront();
             label3.Visible = true;
+            label5.Visible = false;
+            label6.Visible = false;
 
         }
 
@@ -101,17 +143,21 @@ namespace Gas_station
             label3.SendToBack();
             label3.Visible = false;
             label4.Visible = false;
-            label1.Text = "Внесите сумму\nТерминал принимает\nкупюры 50, 100, 500,\n1000 рублей\nСдачу не выдает!";
-            pictureBox3.BringToFront();
-            pictureBox3.Visible = true;
-            paid92 = false;
-            sum = 0;
+            label1.Text = "Вы уверены, что\nхотите продолжить?\nВнесенная сумма\nбудет утерена!";
+            label8.Visible = true;
+            label9.Visible = true;
+            // label1.Text = "Внесите сумму\nТерминал принимает\nкупюры 50, 100, 500,\n1000 рублей\nСдачу не выдает!";
+            //pictureBox3.BringToFront();
+            //pictureBox3.Visible = true;
+            //paid92 = false;
+            //sum = 0;
 
 
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
+            gasoline_selection = true;
             pictureBox4.Visible = false;
             label2.SendToBack();
             sum50.SendToBack();
@@ -131,25 +177,29 @@ namespace Gas_station
             label5.Visible = true;
             label6.BringToFront();
             label6.Visible = true;
+            label7.BringToFront();
+            label7.Visible = true;
         }
 
         private void label5_Click(object sender, EventArgs e)
         {
-            int quantity = sum / 40;
+            float quantity = sum / 40;
             label1.Text = "Будет выдано: " + quantity + "л\nВозьмите:\nшланг 92";
             label5.Visible = false;
             label6.Visible = false;
             label4.Visible = true;
             paid92 = true;
+            label7.Visible = false;
         }
 
         private void label6_Click(object sender, EventArgs e)
         {
-            int quantity = sum / 45;
+            float quantity = sum / 45;
             label1.Text = "Будет выдано: " + quantity + "л\nВозьмите:\nшланг 95";
             label5.Visible = false;
             label6.Visible = false;
             label4.Visible = true;
+            label7.Visible = false;
             paid95 = true;
         }
 
@@ -231,6 +281,66 @@ namespace Gas_station
                 paid95 = false;
 
             }
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            pictureBox3_Click(sender, e);
+            label7.Visible = false;
+            label6.Visible = false;
+            label5.Visible = false;
+            label3.BringToFront();
+            label3.Visible = true;
+            label1.Text = "Нажмите 'готово', \n чтобы закончить\n внесение. \nВы внесли: " + sum + "р";
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+            if (gasoline_selection)
+            {
+                if (paid92)
+                {
+                    float quantity = sum / 40;
+                    label1.Text = "Будет выдано: " + quantity + "л\nВозьмите:\nшланг 92";
+                    label5.Visible = false;
+                    label6.Visible = false;
+                    label8.Visible = false;
+                    label9.Visible = false;
+                    label4.Visible = true;
+                    paid92 = true;
+                    label7.Visible = false;
+                }
+                if (paid95)
+                {
+                    float quantity = sum / 45;
+                    label1.Text = "Будет выдано: " + quantity + "л\nВозьмите:\nшланг 95";
+                    label5.Visible = false;
+                    label6.Visible = false;
+                    label4.Visible = true;
+                    label7.Visible = false;
+                    label8.Visible = false;
+                    label9.Visible = false;
+                    paid95 = true;
+                }
+            }
+            else
+            {
+                label1.Text = "Нажмите 'готово', \n чтобы закончить\n внесение. \nВы внесли: " + sum + "р";
+                label8.Visible = false;
+                label9.Visible = false;
+            }
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+            label1.Text = "Внесите сумму\nТерминал принимает\nкупюры 50, 100, 500,\n1000 рублей\nСдачу не выдает!";
+            pictureBox3.BringToFront();
+            pictureBox3.Visible = true;
+            paid92 = false;
+            sum = 0;
+            label8.Visible = false;
+            label9.Visible = false;
         }
     }
 }
