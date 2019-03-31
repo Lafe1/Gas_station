@@ -113,7 +113,7 @@ namespace Gas_station
         {
             label3.SendToBack();
             label3.Visible = false;
-            sum += 50;           
+            sum += 50;
             pictureBox8.Visible = true;
             await Task.Delay(500);
             pictureBox8.Location = new Point(149, 268);
@@ -184,7 +184,7 @@ namespace Gas_station
         private void label5_Click(object sender, EventArgs e)
         {
             float quantity = sum / 40;
-            label1.Text = "Будет выдано: " + quantity + "л\nВозьмите:\nшланг 92";
+            label1.Text = "Будет выдано: " + quantity.ToString("0.00") + "л\nВозьмите:\nшланг 92";
             label5.Visible = false;
             label6.Visible = false;
             label4.Visible = true;
@@ -195,7 +195,7 @@ namespace Gas_station
         private void label6_Click(object sender, EventArgs e)
         {
             float quantity = sum / 45;
-            label1.Text = "Будет выдано: " + quantity + "л\nВозьмите:\nшланг 95";
+            label1.Text = "Будет выдано: " + quantity.ToString("0.00") + "л\nВозьмите:\nшланг 95";
             label5.Visible = false;
             label6.Visible = false;
             label4.Visible = true;
@@ -241,6 +241,7 @@ namespace Gas_station
 
             if (paid92)
             {
+                double i = 1;
                 label4.Visible = false;
                 pictureBox6.Location = new Point(384, 450);
                 await Task.Delay(500);
@@ -250,6 +251,14 @@ namespace Gas_station
                 await Task.Delay(500);
                 pictureBox6.Location = new Point(384, 700);
                 label1.Text = "Подождите, бак\n наполняется!";
+                while (i < (sum/40))
+                {
+
+                    label1.Text ="Заполнено: " + i.ToString("0.00") + " литров";
+                    await Task.Delay(20);
+                    i+=0.1;
+                }
+                label1.Text = "Заполнено: " + (sum/40).ToString("0.00") + " литров";
                 await Task.Delay(3000);
                 label1.Text = "Бак наполнен!\nВерните шланг\nна место";
                 sum = 0;
@@ -265,6 +274,7 @@ namespace Gas_station
         {
             if (paid95)
             {
+                double i = 1;
                 label4.Visible = false;
                 pictureBox7.Location = new Point(484, 450);
                 await Task.Delay(500);
@@ -274,6 +284,14 @@ namespace Gas_station
                 await Task.Delay(500);
                 pictureBox7.Location = new Point(484, 700);
                 label1.Text = "Подождите, бак\n наполняется!";
+                while (i < (sum / 45))
+                {
+
+                    label1.Text = "Заполнено: " + i.ToString("0.00") + " литров";
+                    await Task.Delay(20);
+                    i+=0.1;
+                }
+                label1.Text = "Заполнено: " + (sum/45).ToString("0.00") + " литров";
                 await Task.Delay(3000);
                 label1.Text = "Бак наполнен!\nВерните шланг\nна место";
                 sum = 0;
@@ -341,6 +359,16 @@ namespace Gas_station
             sum = 0;
             label8.Visible = false;
             label9.Visible = false;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
